@@ -2,13 +2,14 @@
   <div class="header">
       <div class="header-left"><i class="iconfont">&#xe52f;</i></div>
       <div class="header-input"><i class="iconfont search">&#xe540;</i>输入城市/景点/主题</div>
-      <div class="header-right">城市<i class="iconfont location">&#xe546;</i></div>
+      <div class="header-right">中山<i class="iconfont location">&#xe546;</i></div>
   </div>
 </template>
 
 <script>
 export default {
-  name:"HomeHeader"
+  name:"HomeHeader",
+  
 }
 </script>
 

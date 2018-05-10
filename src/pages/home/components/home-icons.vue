@@ -16,8 +16,15 @@
 <script>
   export default {
     name: "Home-Icons",
+    props:["data"],
+    computed:{
+      dataList(data){
+        this.dataList=data;
+      }
+    },
     data() {
       return {
+        dataList:[],
         imgSrc: [{
             src: "http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png",
             title: '景点门票'
@@ -78,7 +85,7 @@
                 }
                 pages[page].push(item);
             })
-             return pages;
+            return pages;
         }
     }
   }
@@ -90,7 +97,7 @@
 
   .icons >>> .swiper-container
         height 0 
-        padding-bottom 55% 
+        padding-bottom 52% 
         background-color #f6f6f6
         .icon 
             position relative 
@@ -114,9 +121,9 @@
                 top 0 
                 left 0 
                 right 0 
-                bottom .4rem 
+                bottom .3rem 
                 box-sizing border-box 
-                padding .3rem 
+                padding .4rem 
                 .img-block
                     height 100% 
                     display block 
