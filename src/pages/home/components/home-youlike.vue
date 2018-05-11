@@ -6,12 +6,12 @@
           <!-- <a href="">全部榜单 <i class="iconfont">&#xe53a;</i></a> -->
       </div>
       <ul class="youlike-lists">
-          <li class="item" v-for="(item,index) in listData" :key='index'>
+          <li class="item" v-for="item in youlike" :key='item.id'>
               <div class="item-img">
-                  <img :src="item.img" :alt="item.desc">   
+                  <img :src="item.imgUrl" :alt="item.title">   
               </div>
               <div class="item-info">
-                  <p class="item-desc">{{item.desc}}</p>
+                  <p class="item-desc">{{item.title}}</p>
                   <div class="item-comment">
                       <div class="star">
                           <el-rate v-model="item.star" disabled  text-color="#ff9900" score-template="{value}">
@@ -31,6 +31,9 @@
 <script>
 export default {
     name:'Home-youLike',
+    props:{
+        youlike:Array
+    },
     data(){
         return{
             iconSrc:'http://img1.qunarzz.com/piao/fusion/1711/89/ebc329f16c55bb02.png',

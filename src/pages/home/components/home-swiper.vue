@@ -2,8 +2,8 @@
   <div class="wrapper">
     <swiper :options="swiperOption">
       <!-- slides -->
-      <swiper-slide  v-for="(item,index) of imagesSrc" :key='index'>
-        <img :src=item class="swiper-img">
+      <swiper-slide  v-for="item of swiper" :key='item.id'>
+        <img :src='item.imgUrl' class="swiper-img">
       </swiper-slide>
       <!-- Optional controls -->
       <div class="swiper-pagination" slot="pagination"></div>
@@ -46,7 +46,7 @@
   overflow-x: hidden
   height: 0
   width: 100%
-  padding-bottom: 26.66%
+  padding-bottom: 30%
   .swiper-img
     max-width:100%;
     // max-height:100%;

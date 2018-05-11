@@ -6,6 +6,8 @@ import router from './router'
 import Element from 'element-ui'
 
 
+
+
 //轮播组件
 import VueAwesomeSwiper from 'vue-awesome-swiper' 
 
@@ -27,6 +29,9 @@ import 'element-ui/lib/theme-chalk/index.css';
 //注册组件
 Vue.use(VueAwesomeSwiper); 
 Vue.use(Element);
+
+
+
 
 Vue.config.productionTip = false
 

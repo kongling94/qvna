@@ -2,10 +2,10 @@
   <div>
     <home-header></home-header>
     <home-swiper :swiper="data.swiperList"></home-swiper>
-    <home-icons ></home-icons>
+    <home-icons :iconList="data.iconList"></home-icons>
     <home-hot></home-hot>  
-    <home-youLike ></home-youLike>
-    <home-weekend ></home-weekend>
+    <home-youLike :youlike="data.recommendList"></home-youLike>
+    <home-weekend :weekendList="data.weekendList"></home-weekend>
   </div>
    
 </template>
@@ -19,10 +19,10 @@ import homeYouLike from './components/home-youLike'
 import homeWeekend from './components/home-weekend'
 import axios from 'axios'
   export default {
-    name: 'HelloWorld',
+    name: 'Home',
     data() {
       return {
-        data:[]
+        data:{}
       }
     },
     components:{

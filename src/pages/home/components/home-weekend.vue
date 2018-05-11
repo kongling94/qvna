@@ -5,13 +5,13 @@
           <!-- <a href="">全部榜单 <i class="iconfont">&#xe53a;</i></a> -->
       </div>
       <ul class="youlike-lists">
-          <li class="item" v-for="(item,index) in listData" :key='index'>
+          <li class="item" v-for="item in weekendList" :key='item.id'>
               <div class="item-img">
-                  <img :src="item.img" :alt="item.desc">   
+                  <img :src="item.imgUrl" :alt="item.desc">   
               </div>
               <div class="item-info">
-                  <p class="item-desc">{{item.desc}}</p>
-                  <p class="item-info">{{item.info}}</p>
+                  <p class="item-desc">{{item.title}}</p>
+                  <p class="item-info">{{item.desc}}</p>
               </div>
           </li>
       </ul>
@@ -20,36 +20,12 @@
 <script>
 export default {
     name:'Home-weekend',
+    props:{
+        weekendList:Array
+    },
     data(){
         return{
             iconSrc:'http://img1.qunarzz.com/piao/fusion/1711/89/ebc329f16c55bb02.png',
-            listData:[
-                {
-                    img:'http://img1.qunarzz.com/sight/source/1505/3c/96128de07fdd2f.jpg_r_640x214_4505bca3.jpg',
-                    desc:'中山必游TOP10',
-                    info:'国父故乡，革命起源地'
-                },
-                {
-                    img:'http://img1.qunarzz.com/sight/source/1602/88/bf120edeaea383.jpg_r_640x214_f8591f7b.jpg',
-                    desc:'欢乐长隆',                    
-                    info:'世界欢乐汇聚长隆'
-                },
-                {
-                    img:'http://img1.qunarzz.com/sight/source/1507/9d/fe134bf7b158b5.jpg_r_640x214_c1c853fe.jpg',
-                    desc:'你不知道的中山',
-                    info:'中山，比你想象得精彩'
-                },
-                {
-                    img:'http://img1.qunarzz.com/sight/source/1511/f7/90c1c5f6f3dd59.jpg_r_640x214_3cb4974e.jpg',
-                    desc:'河源必游TOP10',
-                    info:'走进客家古邑，感受万绿河源'
-                },
-                {
-                    img:'http://img1.qunarzz.com/sight/source/1506/45/313877f3917dbe.jpg_r_640x214_1c113e46.jpg',
-                    desc:'江门必游TOP10',
-                    info:'你不可错过的休闲度假之地'
-                }
-            ]
         }
     }
 }

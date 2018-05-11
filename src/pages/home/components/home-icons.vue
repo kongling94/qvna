@@ -1,12 +1,12 @@
 <template>
   <div class="icons">
-    <swiper :options="swiperOption">
+    <swiper :options="swiperOption" v-if="iconList.length">
         <swiper-slide v-for="(page,index) in pagesComputed" :key='index'> 
-            <div class="icon" v-for="(item,index) in page" :key='index'>
+            <div class="icon" v-for="item in page" :key='item.id'>
                 <div class="icon-img">
-                    <img class="img-block" :src="item.src" alt="item.title" >
+                    <img class="img-block" :src="item.imgUrl" alt="item.title" >
                 </div>
-                <p class="icon-text">{{item.title}}</p>
+                <p class="icon-text">{{item.desc}}</p>
             </div>
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div> 
@@ -16,56 +16,10 @@
 <script>
   export default {
     name: "Home-Icons",
-    props:["data"],
-    computed:{
-      dataList(data){
-        this.dataList=data;
-      }
-    },
+    props:["iconList"],
     data() {
       return {
-        dataList:[],
-        imgSrc: [{
-            src: "http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png",
-            title: '景点门票'
-          },
-          {
-            src: 'http://img1.qunarzz.com/piao/fusion/1803/ab/6f7d6e44963c9302.png',
-            title: '温泉'
-          },
-          {
-            src: 'http://img1.qunarzz.com/piao/fusion/1803/3e/86314b2af03b7502.png',
-            title: '水上玩乐'
-          },
-          {
-            src: 'http://img1.qunarzz.com/piao/fusion/1803/b1/528a9e80403b8c02.png',
-            title: '摩天轮'
-          },
-          {
-            src: 'http://img1.qunarzz.com/piao/fusion/1803/90/59a2f523ee2f9202.png',
-            title: '农家度假'
-          },
-          {
-            src: 'http://img1.qunarzz.com/piao/fusion/1803/95/8246f27355943202.png',
-            title: '游乐场'
-          },
-          {
-            src: 'http://img1.qunarzz.com/piao/fusion/1803/89/55083b0f1951f302.png',
-            title: '游船游艇'
-          },
-          {
-            src: 'http://img1.qunarzz.com/piao/fusion/1803/96/c70f1e85ae4a4f02.png',
-            title: '自然风光'
-          },
-          {
-            src:'http://img1.qunarzz.com/piao/fusion/1803/47/c2b659e048b11602.png',
-            title:'亲子游'
-          },
-          {
-            src:'http://img1.qunarzz.com/piao/fusion/1803/80/416c6ab3368d1f02.png',
-            title:'全部玩乐'
-          }
-        ],
+        dataList:this.iconList,
         swiperOption:{
           pagination:{
             el:'.swiper-pagination'
@@ -78,7 +32,7 @@
     computed:{
         pagesComputed () {
             const pages = [];
-            this.imgSrc.forEach((item,index)=>{
+            this.iconList.forEach((item,index)=>{
                 const page = Math.floor(index / 8);
                 if(!pages[page]){
                     pages[page]=[]
@@ -86,6 +40,9 @@
                 pages[page].push(item);
             })
             return pages;
+        },
+        isGet(){
+          return this.dataList.length
         }
     }
   }
