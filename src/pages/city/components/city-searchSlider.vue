@@ -1,19 +1,60 @@
 <template>
   <div class="sliderList">
       <ul>
-          <li>A</li>
-          <li>A</li>
-          <li>A</li>
-          <li>A</li>
-          <li>A</li>
-          <li>A</li>
-          <li>A</li>
+          <li v-for="item in listAll" :key="item" @click="handleToList" :ref="item" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">{{item}}</li>
       </ul>
   </div>
 </template>
 <script>
 export default {
   name:"city-searchSlider",
+  props: ['sliderList'],
+  data(){
+      return{
+          isStart:false,
+          timer:null,
+          startY:0
+      }
+  },
+  updated () {
+      this.startY = this.$refs['A'][0].offsetTop
+  },
+  computed:{
+      listAll(){
+          const lists=[];
+          for (let i in this.sliderList) {
+              if ( this.sliderList.hasOwnProperty(i) ) {
+                 lists.push(i);
+              }
+          }
+          return lists;
+      }
+  },
+  methods:{
+      handleToList(e){
+         this.$emit('toList',e.target.innerText)
+      },
+      handleTouchStart(){
+          this.isStart = true
+      },
+      handleTouchMove(e){
+          if(this.isStart){
+              if(this.timer){
+                  clearTimeout(this.timer)
+              }
+             this.timer = setTimeout(() => {
+                const moveY = e.touches[0].clientY - 86 ;
+                const index = Math.floor((moveY - this.startY) / 19);
+                if(index >= 0 && index < this.listAll.length){
+                    this.$emit("toList",this.listAll[index])
+                }
+             }, 16);
+          }
+      },
+      handleTouchEnd(){
+          this.isStart=false;
+      }
+  }
 }
 </script>
 <style lang="stylus" scoped>
@@ -25,7 +66,7 @@ export default {
         flex-direction column
         justify-content center
         top 1.76rem
-        right .2rem
+        right 0
         z-index 10
 
         ul 

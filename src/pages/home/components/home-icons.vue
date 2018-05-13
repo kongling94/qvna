@@ -1,6 +1,6 @@
 <template>
   <div class="icons">
-    <swiper :options="swiperOption" v-if="iconList.length">
+    <swiper :options="swiperOption" v-if="iconList">
         <swiper-slide v-for="(page,index) in pagesComputed" :key='index'> 
             <div class="icon" v-for="item in page" :key='item.id'>
                 <div class="icon-img">
@@ -19,7 +19,7 @@
     props:["iconList"],
     data() {
       return {
-        dataList:this.iconList,
+        dataList:"",
         swiperOption:{
           pagination:{
             el:'.swiper-pagination'
@@ -40,9 +40,6 @@
                 pages[page].push(item);
             })
             return pages;
-        },
-        isGet(){
-          return this.dataList.length
         }
     }
   }

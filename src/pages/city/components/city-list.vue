@@ -12,78 +12,20 @@
         <div class="area">
             <div class="title">热门城市</div>
             <div class="btn-list">
-                <div class="btn-wrapper">
-                    <div class="btn">北京</div>
-                </div>
-                <div class="btn-wrapper">
-                    <div class="btn">杭州</div>
-                </div>
-                <div class="btn-wrapper">
-                    <div class="btn">广州</div>
-                </div>
-                <div class="btn-wrapper">
-                    <div class="btn">上海</div>
-                </div>
-                <div class="btn-wrapper">
-                    <div class="btn">深圳</div>
+                <div class="btn-wrapper" v-for="item of data.hotCities" :key="item.id">
+                    <div class="btn">{{item.name}}</div>
                 </div>
             </div>           
         </div> 
-        <div class="area">
-            <div class="title">A</div>
-            <div class="btn-list item-list">
+        <div class="area" v-for="(lists,key) of data.cities" :key="key" :ref="key">
+            <div class="title">{{key}}</div>
+            <div class="btn-list item-list" v-for="list in lists" :key="list.id">
                 <div class="btn-wrapper item">
-                    <div class="btn">北京</div>
-                </div>
-                <div class="btn-wrapper item">
-                    <div class="btn">杭州</div>
-                </div>
-                <div class="btn-wrapper item">
-                    <div class="btn">广州</div>
-                </div>
-                <div class="btn-wrapper item">
-                    <div class="btn">上海</div>
-                </div>
-                <div class="btn-wrapper item">
-                    <div class="btn">深圳</div>
+                    <div class="btn">{{list.name}}</div>
                 </div>
             </div>           
         </div> 
-        <div class="area">
-            <div class="title">B</div>
-            <div class="btn-list item-list">
-                <div class="btn-wrapper item">
-                    <div class="btn">北京</div>
-                </div>
-                <div class="btn-wrapper item">
-                    <div class="btn">杭州</div>
-                </div>
-                <div class="btn-wrapper item">
-                    <div class="btn">广州</div>
-                </div>
-                <div class="btn-wrapper item">
-                    <div class="btn">上海</div>
-                </div>
-                <div class="btn-wrapper item">
-                    <div class="btn">深圳</div>
-                </div>
-                <div class="btn-wrapper item">
-                    <div class="btn">北京</div>
-                </div>
-                <div class="btn-wrapper item">
-                    <div class="btn">杭州</div>
-                </div>
-                <div class="btn-wrapper item">
-                    <div class="btn">广州</div>
-                </div>
-                <div class="btn-wrapper item">
-                    <div class="btn">上海</div>
-                </div>
-                <div class="btn-wrapper item">
-                    <div class="btn">深圳</div>
-                </div>
-            </div>         
-        </div> 
+       
       </div>
   </div>
 </template>
@@ -92,8 +34,17 @@ import BScroll from 'better-scroll'
 
 export default {
     name:'city-List',
+    props: ['data','listNum'],
     mounted(){
         this.scroll = new BScroll(this.$refs.wrapper)
+    },
+    watch:{
+        listNum(){
+            if(this.listNum){
+                const ele=this.$refs[this.listNum][0];
+                this.scroll.scrollToElement(ele)
+            }
+        }
     }
 }
 </script>
@@ -102,7 +53,7 @@ export default {
 .list
     // padding .12rem 0
     position absolute
-    top 1.76rem
+    top 1.72rem
     left 0
     right 0
     bottom 0
@@ -120,7 +71,7 @@ export default {
             background-color #eee
         
         .btn-list 
-            padding .1rem
+            padding .1rem .6rem .1rem .1rem
             overflow hidden
             .btn-wrapper 
                 float left
@@ -132,7 +83,7 @@ export default {
                     padding .1rem 0
                     border .02rem solid #ccc   
                     border-radius .06rem
-            // border-top 1px solid #000
+           
         .item-list
             .item
                 float auto
@@ -140,6 +91,7 @@ export default {
                 // margin .1rem 0
                 text-align left
                 text-indent .3rem
+
                 &:not(:first-child) 
                     border-top 1px solid #ccc
                 .btn

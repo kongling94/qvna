@@ -3,7 +3,7 @@
       <div class="header-left"><i class="iconfont">&#xe52f;</i></div>
       <div class="header-input"><i class="iconfont search">&#xe540;</i>输入城市/景点/主题</div>
       <router-link to="/city">
-      <div class="header-right">中山<i class="iconfont location">&#xe546;</i></div>
+        <div class="header-right">中山<i class="iconfont location">&#xe546;</i></div>
       </router-link>
   </div>
 </template>

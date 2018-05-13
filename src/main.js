@@ -8,6 +8,7 @@ import Element from 'element-ui'
 
 
 
+
 //轮播组件
 import VueAwesomeSwiper from 'vue-awesome-swiper' 
 
