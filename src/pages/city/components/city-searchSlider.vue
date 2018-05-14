@@ -8,7 +8,7 @@
 <script>
 export default {
   name:"city-searchSlider",
-  props: ['sliderList'],
+  props: ['cities'],
   data(){
       return{
           isStart:false,
@@ -22,8 +22,8 @@ export default {
   computed:{
       listAll(){
           const lists=[];
-          for (let i in this.sliderList) {
-              if ( this.sliderList.hasOwnProperty(i) ) {
+          for (let i in this.cities) {
+              if ( this.cities.hasOwnProperty(i) ) {
                  lists.push(i);
               }
           }
@@ -60,15 +60,15 @@ export default {
 <style lang="stylus" scoped>
 @import '~C/basestylus.styl' 
     .sliderList
-        position absolute
-        height 100%
+        
         display flex
         flex-direction column
         justify-content center
+        position absolute
         top 1.76rem
         right 0
+        bottom 0
         z-index 10
-
         ul 
             border 1px solid #eee
             background-color #fff

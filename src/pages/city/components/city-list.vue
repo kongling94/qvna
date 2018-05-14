@@ -5,21 +5,21 @@
             <div class="title">当前城市</div>  
             <div class="btn-list">
                 <div class="btn-wrapper">
-                    <div class="btn">中山</div>
+                    <div class="btn">{{this.$store.state.city}}</div>
                 </div>
             </div>      
         </div> 
         <div class="area">
             <div class="title">热门城市</div>
             <div class="btn-list">
-                <div class="btn-wrapper" v-for="item of data.hotCities" :key="item.id">
+                <div class="btn-wrapper" v-for="item in data.hotCities" :key="item.id" v-on:click="handleCityClick(item.name)">
                     <div class="btn">{{item.name}}</div>
                 </div>
             </div>           
         </div> 
-        <div class="area" v-for="(lists,key) of data.cities" :key="key" :ref="key">
+        <div class="area" v-for="(lists,key) in data.cities" :key="key" :ref="key">
             <div class="title">{{key}}</div>
-            <div class="btn-list item-list" v-for="list in lists" :key="list.id">
+            <div class="btn-list item-list" v-for="list in lists" :key="list.id" v-on:click="handleCityClick(list.name)">
                 <div class="btn-wrapper item">
                     <div class="btn">{{list.name}}</div>
                 </div>
@@ -35,8 +35,11 @@ import BScroll from 'better-scroll'
 export default {
     name:'city-List',
     props: ['data','listNum'],
-    mounted(){
-        this.scroll = new BScroll(this.$refs.wrapper)
+    methods:{
+        handleCityClick (city) {
+            console.log(city)
+            this.$store.dispatch('changeCity',city)
+        }
     },
     watch:{
         listNum(){
@@ -45,6 +48,9 @@ export default {
                 this.scroll.scrollToElement(ele)
             }
         }
+    },
+    mounted(){
+        this.scroll = new BScroll(this.$refs.wrapper)
     }
 }
 </script>

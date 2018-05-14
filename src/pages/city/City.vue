@@ -3,7 +3,8 @@
       <city-header></city-header>
       <city-search :cities="data.cities"></city-search>
       <city-list :data="data" :listNum="listNum"></city-list>
-      <city-searchSlider :sliderList="data.cities"  @toList="handleListJump"></city-searchSlider>
+      <citySearchSlider :cities="data.cities"  @toList="handleListJump"></citySearchSlider>
+      <!-- <city-Alphabet :cities="data.cities"  @toList="handleListJump"></city-Alphabet> -->
   </div>
 </template>
 <script>
@@ -11,6 +12,7 @@ import cityHeader from './components/city-header'
 import citySearch from './components/city-search'
 import cityList from './components/city-list'
 import citySearchSlider from './components/city-searchSlider'
+import cityAlphabet from './components/city-alphabet'
 import axios from 'axios'
 
 export default {
@@ -25,7 +27,8 @@ export default {
         cityHeader,
         citySearch,
         cityList,
-        citySearchSlider
+        citySearchSlider,
+        cityAlphabet
     },
     mounted () {
         this.getCityData()
