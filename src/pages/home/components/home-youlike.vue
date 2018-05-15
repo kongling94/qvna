@@ -6,7 +6,7 @@
           <!-- <a href="">全部榜单 <i class="iconfont">&#xe53a;</i></a> -->
       </div>
       <ul class="youlike-lists">
-          <li class="item" v-for="item in youlike" :key='item.id'>
+          <router-link :to="'/detail/'+ item.id" tag="li" class="item" v-for="item in youlike" :key='item.id'>
               <div class="item-img">
                   <img :src="item.imgUrl" :alt="item.title">   
               </div>
@@ -24,7 +24,7 @@
                     <span class="address">￥{{item.address}}</span>
                   </div>
               </div>
-          </li>
+          </router-link>
       </ul>
   </div>
 </template>
@@ -124,6 +124,7 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+
     .youlike
         margin-top .1rem
         .youlike-title

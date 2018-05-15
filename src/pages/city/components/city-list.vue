@@ -5,7 +5,7 @@
             <div class="title">当前城市</div>  
             <div class="btn-list">
                 <div class="btn-wrapper">
-                    <div class="btn">{{this.$store.state.city}}</div>
+                    <div class="btn">{{this.currentCity}}</div>
                 </div>
             </div>      
         </div> 
@@ -19,7 +19,7 @@
         </div> 
         <div class="area" v-for="(lists,key) in data.cities" :key="key" :ref="key">
             <div class="title">{{key}}</div>
-            <div class="btn-list item-list" v-for="list in lists" :key="list.id" v-on:click="handleCityClick(list.name)">
+            <div class="btn-list item-list" v-for="list in lists" :key="list.id" @click="handleCityClick(list.name)">
                 <div class="btn-wrapper item">
                     <div class="btn">{{list.name}}</div>
                 </div>
@@ -31,15 +31,21 @@
 </template>
 <script>
 import BScroll from 'better-scroll'
-
+import { mapState,mapMutations } from 'vuex'
 export default {
     name:'city-List',
     props: ['data','listNum'],
+    computed:{
+        ...mapState({
+            currentCity:'city'
+        })
+    },
     methods:{
         handleCityClick (city) {
             console.log(city)
-            this.$store.dispatch('changeCity',city)
-        }
+            this.changCity(city)
+        },
+        ...mapMutations(['changCity'])
     },
     watch:{
         listNum(){

@@ -5,11 +5,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state:{
-        city:'北京'
+        city:'上海'
     },
     actions:{
         changCity(ctx, city) {
-           console.log(city)  
+            console.log("actions" + city)
+            stx.dispatch('changCity',city)
         }
     },
     mutations: {

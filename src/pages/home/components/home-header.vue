@@ -3,15 +3,18 @@
       <div class="header-left"><i class="iconfont">&#xe52f;</i></div>
       <div class="header-input"><i class="iconfont search">&#xe540;</i>输入城市/景点/主题</div>
       <router-link to="/city">
-        <div class="header-right">{{this.$store.state.city}}<i class="iconfont location">&#xe546;</i></div>
+        <div class="header-right">{{this.city}}<i class="iconfont location">&#xe546;</i></div>
       </router-link>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name:"HomeHeader",
-  
+  computed:{
+      ...mapState(['city'])
+  }
 }
 </script>
 
@@ -28,7 +31,8 @@ export default {
             width:.64rem
             float:left
         .header-right
-            width:1.24rem
+            min-width:1.04rem
+            padding:0 .1rem 0
             float:right
             color #fff
             .location

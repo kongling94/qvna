@@ -17,11 +17,13 @@ import homeIcons from './components/home-icons'
 import homeHot from './components/home-hot'
 import homeYouLike from './components/home-youLike'
 import homeWeekend from './components/home-weekend'
+import { mapState } from 'vuex'
 import axios from 'axios'
   export default {
     name: 'Home',
     data() {
       return {
+        lastCity:'',
         data:{}
       }
     },
@@ -33,22 +35,30 @@ import axios from 'axios'
       homeYouLike,
       homeWeekend
     },
+    computed:{
+      ...mapState(['city'])
+    },
     mounted(){
+      this.lastCity=this.city
       this.getHomeData();
+    },
+    activated(){
+      if(this.lastCity !== this.city){
+        this.lastCity=this.city
+        this.getHomeData()
+      }
     },
     methods:{
       getHomeData(){
-        axios.get('/api/index.json')
+        axios.get('/api/index.json?city='+this.city)
         .then(this.getHomeDataSuccess) 
       },
       getHomeDataSuccess(res){
         res=res.data;
         if(res.ret && res.data){
             const data=res.data;
-            this.data=data;
-            // console.log(data)  
+            this.data=data; 
         }
-        
       }
     }
   }
