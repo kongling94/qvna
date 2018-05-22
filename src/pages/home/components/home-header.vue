@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-      <div class="header-left"><i class="iconfont">&#xe52f;</i></div>
+      <div class="header-left"></div>
       <div class="header-input"><i class="iconfont search">&#xe540;</i>输入城市/景点/主题</div>
       <router-link to="/city">
         <div class="header-right">{{this.city}}<i class="iconfont location">&#xe546;</i></div>
